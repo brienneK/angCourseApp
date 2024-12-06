@@ -9,5 +9,4 @@ import { Component, input, output } from '@angular/core';
 })
 export class TasksComponent {
   name = input.required<string>();
-  selectedUserName = output<string>();
 }
