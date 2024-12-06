@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, input, computed } from '@angular/core';
+import { Component, Input, Output, EventEmitter, input, output, computed } from '@angular/core';
 
 @Component({
   selector: 'app-user',
@@ -10,24 +10,27 @@ import { Component, Input, Output, EventEmitter, input, computed } from '@angula
 
 export class UserComponent {
   // Decorator method
-    @Input({required: true}) id!: string;
+  
+  // @Input({required: true}) id!: string;
   // @Input({required: true}) avatar: string;
   // @Input({required: true}) name: string;
-  @Output() select = new EventEmitter();
-
-  // Signal method with generic type - (read only)
-  avatar = input.required<string>();
-  name = input.required<string>();
+  // @Output() select = new EventEmitter();
 
   // get imagePath() {
   //   return 'assets/users/' + this.avatar;
   // }
+
+  // Signal method with generic type - (read only)
+  id = input.required<string>();
+  avatar = input.required<string>();
+  name = input.required<string>();
+  select = output<string>();
 
   imagePath = computed(() => {
     return 'assets/users/' + this.avatar();
   });
 
   onSelectUser() {
-    this.select.emit(this.id);
+    this.select.emit(this.id());
   }
 }
