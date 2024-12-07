@@ -2,6 +2,7 @@ import { Component, Input, input } from '@angular/core';
 import { TaskComponent } from "./task/task.component";
 import { NewTaskComponent } from './new-task/new-task.component';
 import { type NewTaskData } from './task/task.model';
+import { TasksService } from './tasks.service';
 
 @Component({
   selector: 'app-tasks',
@@ -10,6 +11,7 @@ import { type NewTaskData } from './task/task.model';
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css'
 })
+
 export class TasksComponent {
   @Input({required: true}) userId!: string;
   //userIid = input<string>();
@@ -17,32 +19,12 @@ export class TasksComponent {
   // name = input<string>();
   
   isAddingTask = false;
-  tasks = [
-    {
-      id: 't1',
-      userId: 'u1',
-      title: 'Do stuff',
-      summary: 'Ya know, stuff',
-      dueDate: '2025-03-31'
-    },
-    {
-      id: 't2',
-      userId: 'u2',
-      title: 'More stuff',
-      summary: 'More and more',
-      dueDate: '2025-07-31'
-    },
-    {
-      id: 't3',
-      userId: 'u3',
-      title: 'Bit more stuff',
-      summary: 'Adulting never ends',
-      dueDate: '2025-12-31'
-    },    
-  ];
 
+  // Dependency injection!
+  constructor(private tasksService: TasksService) {}
+  
   get selectedUserTasks() {
-    return this.tasks.filter((task) => task.userId === this.userId);
+    return this.tasksService.getUserTasks(this.userId);
   }
 
   onStartAddTask() {
@@ -50,7 +32,6 @@ export class TasksComponent {
   }
 
   onCompleteTask(id: string) {
-    this.tasks = this.tasks.filter((task) => task.id !== id);
   }
 
   onCancelAddTask() {
@@ -58,13 +39,6 @@ export class TasksComponent {
   }
 
   onAddTask(taskData: NewTaskData) {
-    this.tasks.push({
-      id: new Date().getTime().toString(),
-      userId: this.userId,
-      title: taskData.title,
-      summary: taskData.summary,
-      dueDate: taskData.date
-    })
     this.isAddingTask = false;
 
   }
