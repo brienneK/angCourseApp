@@ -22,7 +22,7 @@ export class TasksComponent {
 
   // Dependency injection!
   constructor(private tasksService: TasksService) {}
-  
+
   get selectedUserTasks() {
     return this.tasksService.getUserTasks(this.userId);
   }
@@ -34,12 +34,8 @@ export class TasksComponent {
   onCompleteTask(id: string) {
   }
 
-  onCancelAddTask() {
+  onCloseAddTask() {
     this.isAddingTask = false;
   }
 
-  onAddTask(taskData: NewTaskData) {
-    this.isAddingTask = false;
-
-  }
 }
