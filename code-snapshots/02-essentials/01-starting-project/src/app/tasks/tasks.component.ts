@@ -31,9 +31,6 @@ export class TasksComponent {
     this.isAddingTask = true;
   }
 
-  onCompleteTask(id: string) {
-  }
-
   onCloseAddTask() {
     this.isAddingTask = false;
   }
