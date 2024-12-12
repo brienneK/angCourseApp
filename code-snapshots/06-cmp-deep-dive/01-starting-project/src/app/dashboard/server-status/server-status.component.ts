@@ -14,8 +14,11 @@ export class ServerStatusComponent implements OnInit {
 
   constructor() {
     // Sets up a subscription
-    effect(() => {
+    effect((onCleanup) => {
       console.log(this.currentStatus());
+      onCleanup(() => {
+        console.log('pretend I\'m cleaning');
+      });
     });
   }
 
