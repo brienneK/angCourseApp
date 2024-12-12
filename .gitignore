@@ -41,4 +41,4 @@ testem.log
 .DS_Store
 Thumbs.db
 
-./BK-course-guide.txt
+/BK-course-guide.txt
