@@ -40,3 +40,6 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+./BK-course-guide.txt
+./BK-course-notes.txt
