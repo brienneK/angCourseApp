@@ -5,7 +5,7 @@ import { Task } from "./task.model";
     providedIn: 'root'
 })
 
-export class TaskService {
+export class TasksService {
     tasks = signal<Task[]>([]);
 
     addTask(taskData: {title: string; description: string}) {
